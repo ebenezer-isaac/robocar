@@ -1,4 +1,3 @@
-
 from curtsies import Input
 import RPi.GPIO as GPIO
 from time import sleep
@@ -22,34 +21,3 @@ with Input(keynames='curses') as input_generator:
              GPIO.output(12, GPIO.LOW)
              GPIO.output(16, GPIO.LOW)
 
-while True:
- GPIO.output(8, GPIO.LOW)
- GPIO.output(10, GPIO.HIGH)
- GPIO.output(12, GPIO.LOW)
- GPIO.output(16, GPIO.HIGH)
- print("high")
- sleep(2)
- GPIO.output(8, GPIO.HIGH)
- GPIO.output(10, GPIO.LOW)
- GPIO.output(12, GPIO.HIGH)
- GPIO.output(16, GPIO.LOW)
- print("low")
- sleep(2)
- GPIO.output(8, GPIO.HIGH)
- GPIO.output(10, GPIO.LOW)
- GPIO.output(12, GPIO.LOW)
- GPIO.output(16, GPIO.LOW)
- print("low")
- sleep(2)
- GPIO.output(8, GPIO.LOW)
- GPIO.output(10, GPIO.LOW)
- GPIO.output(12, GPIO.HIGH)
- GPIO.output(16, GPIO.LOW)
- print("low")
- sleep(2)
- GPIO.output(8, GPIO.HIGH)
- GPIO.output(10, GPIO.HIGH)
- GPIO.output(12, GPIO.HIGH)
- GPIO.output(16, GPIO.HIGH)
- print("stop")
- sleep(2)
