@@ -20,6 +20,18 @@ while True: # Run forever
  GPIO.output(16, GPIO.LOW) # Turn off
  print("low")
  sleep(2) # Sleep for 1 second
+ GPIO.output(8, GPIO.HIGH) # Turn off
+ GPIO.output(10, GPIO.LOW) # Turn off
+ GPIO.output(12, GPIO.HIGH) # Turn off
+ GPIO.output(16, GPIO.LOW) # Turn off
+ print("low")
+ sleep(2) # Sleep for 1 second
+ GPIO.output(8, GPIO.HIGH) # Turn off
+ GPIO.output(10, GPIO.LOW) # Turn off
+ GPIO.output(12, GPIO.HIGH) # Turn off
+ GPIO.output(16, GPIO.LOW) # Turn off
+ print("low")
+ sleep(2) # Sleep for 1 second
  GPIO.output(8, GPIO.LOW) # Turn off
  GPIO.output(10, GPIO.LOW) # Turn off
  GPIO.output(12, GPIO.LOW) # Turn off
