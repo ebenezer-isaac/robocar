@@ -1,55 +1,47 @@
-
-from curtsies import Input
+import pygame, sys
+import pygame.locals
 import RPi.GPIO as GPIO
 from time import sleep
+
 GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
 GPIO.setup(8, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(10, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(12, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(16, GPIO.OUT, initial=GPIO.HIGH)
 
-with Input(keynames='curses') as input_generator:
-    for key in input_generator:
-        print(key)
-        while key == 'w':
-             GPIO.output(8, GPIO.LOW)
-             GPIO.output(10, GPIO.HIGH)
-             GPIO.output(12, GPIO.LOW)
-             GPIO.output(16, GPIO.HIGH)
-        while key == ' ':
-             GPIO.output(8, GPIO.LOW)
-             GPIO.output(10, GPIO.LOW)
-             GPIO.output(12, GPIO.LOW)
-             GPIO.output(16, GPIO.LOW)
+pygame.init()
+print("initialized")
+screen = pygame.display.set_mode((500,400))
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        GPIO.output(8, GPIO.LOW)
+        GPIO.output(10, GPIO.HIGH)
+        GPIO.output(12, GPIO.LOW)
+        GPIO.output(16, GPIO.HIGH)
+    elif keys[pygame.K_a]:
+        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(10, GPIO.HIGH)
+        GPIO.output(12, GPIO.LOW)
+        GPIO.output(16, GPIO.HIGH)
+    elif keys[pygame.K_s]:
+        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(10, GPIO.LOW)
+        GPIO.output(12, GPIO.HIGH)
+        GPIO.output(16, GPIO.LOW)
+    elif keys[pygame.K_d]:
+        GPIO.output(8, GPIO.LOW)
+        GPIO.output(10, GPIO.HIGH)
+        GPIO.output(12, GPIO.HIGH)
+        GPIO.output(16, GPIO.HIGH)
+    else:
+        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(10, GPIO.HIGH)
+        GPIO.output(12, GPIO.HIGH)
+        GPIO.output(16, GPIO.HIGH)
 
-while True:
- GPIO.output(8, GPIO.LOW)
- GPIO.output(10, GPIO.HIGH)
- GPIO.output(12, GPIO.LOW)
- GPIO.output(16, GPIO.HIGH)
- print("high")
- sleep(2)
- GPIO.output(8, GPIO.HIGH)
- GPIO.output(10, GPIO.LOW)
- GPIO.output(12, GPIO.HIGH)
- GPIO.output(16, GPIO.LOW)
- print("low")
- sleep(2)
- GPIO.output(8, GPIO.HIGH)
- GPIO.output(10, GPIO.LOW)
- GPIO.output(12, GPIO.LOW)
- GPIO.output(16, GPIO.LOW)
- print("low")
- sleep(2)
- GPIO.output(8, GPIO.LOW)
- GPIO.output(10, GPIO.LOW)
- GPIO.output(12, GPIO.HIGH)
- GPIO.output(16, GPIO.LOW)
- print("low")
- sleep(2)
- GPIO.output(8, GPIO.HIGH)
- GPIO.output(10, GPIO.HIGH)
- GPIO.output(12, GPIO.HIGH)
- GPIO.output(16, GPIO.HIGH)
- print("stop")
- sleep(2)
