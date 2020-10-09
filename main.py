@@ -20,22 +20,27 @@ while running:
             running = False
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
+        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(10, GPIO.LOW)
+        GPIO.output(12, GPIO.HIGH)
+        GPIO.output(16, GPIO.LOW)
+    elif keys[pygame.K_s]:
         GPIO.output(8, GPIO.LOW)
         GPIO.output(10, GPIO.HIGH)
         GPIO.output(12, GPIO.LOW)
         GPIO.output(16, GPIO.HIGH)
     elif keys[pygame.K_a]:
-        GPIO.output(8, GPIO.HIGH)
-        GPIO.output(10, GPIO.HIGH)
-        GPIO.output(12, GPIO.LOW)
-        GPIO.output(16, GPIO.HIGH)
-    elif keys[pygame.K_s]:
-        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(8, GPIO.LOW)
         GPIO.output(10, GPIO.LOW)
         GPIO.output(12, GPIO.HIGH)
         GPIO.output(16, GPIO.LOW)
     elif keys[pygame.K_d]:
-        GPIO.output(8, GPIO.LOW)
+        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(10, GPIO.LOW)
+        GPIO.output(12, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)
+    elif keys[pygame.K_SPACE]:
+        GPIO.output(8, GPIO.HIGH)
         GPIO.output(10, GPIO.HIGH)
         GPIO.output(12, GPIO.HIGH)
         GPIO.output(16, GPIO.HIGH)
