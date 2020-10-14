@@ -38,14 +38,14 @@ while running:
     		speed = speed - 1
     if keys[pygame.K_w]:
     	direction = 0
-    	wheel1.ChangeDutyCycle(duty)
-    	wheel2.ChangeDutyCycle(100-(speed*20))
-    	wheel3.ChangeDutyCycle(duty)
-    	wheel4.ChangeDutyCycle(100-(speed*20))
-        GPIO.output(8, GPIO.HIGH)
-        GPIO.output(10, GPIO.LOW)
-        GPIO.output(12, GPIO.HIGH)
-        GPIO.output(16, GPIO.LOW)
+    	wheel1_pwm.ChangeDutyCycle(100)
+    	wheel2_pwm.ChangeDutyCycle(100-(speed*20))
+    	wheel3_pwm.ChangeDutyCycle(100)
+    	wheel4_pwm.ChangeDutyCycle(100-(speed*20))
+#        GPIO.output(8, GPIO.HIGH)
+#        GPIO.output(10, GPIO.LOW)
+#        GPIO.output(12, GPIO.HIGH)
+#        GPIO.output(16, GPIO.LOW)
     elif keys[pygame.K_s]:
     	direction = 1
         GPIO.output(8, GPIO.LOW)
