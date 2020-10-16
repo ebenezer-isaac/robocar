@@ -55,7 +55,7 @@ while running:
         print(speed)
     if keys[pygame.K_w] and keys[pygame.K_a]:
     	direction = 0
-    	wheel1_pwm.ChangeDutyCycle(20)
+    	wheel1_pwm.ChangeDutyCycle(0)
     	wheel2_pwm.ChangeDutyCycle(0)
     	wheel3_pwm.ChangeDutyCycle(100)
     	wheel4_pwm.ChangeDutyCycle(0)
@@ -63,12 +63,12 @@ while running:
     	direction = 0
     	wheel1_pwm.ChangeDutyCycle(100)
     	wheel2_pwm.ChangeDutyCycle(0)
-    	wheel3_pwm.ChangeDutyCycle(20)
+    	wheel3_pwm.ChangeDutyCycle(0)
     	wheel4_pwm.ChangeDutyCycle(0)
     elif keys[pygame.K_s] and keys[pygame.K_a]:
     	direction = 0
     	wheel1_pwm.ChangeDutyCycle(0)
-    	wheel2_pwm.ChangeDutyCycle(20)
+    	wheel2_pwm.ChangeDutyCycle(5)
     	wheel3_pwm.ChangeDutyCycle(0)
     	wheel4_pwm.ChangeDutyCycle(100)
     elif keys[pygame.K_s] and keys[pygame.K_d]:
@@ -76,7 +76,7 @@ while running:
     	wheel1_pwm.ChangeDutyCycle(0)
     	wheel2_pwm.ChangeDutyCycle(100)
     	wheel3_pwm.ChangeDutyCycle(0)
-    	wheel4_pwm.ChangeDutyCycle(20)
+    	wheel4_pwm.ChangeDutyCycle(5)
     elif keys[pygame.K_w]:
     	direction = 0
     	wheel1_pwm.ChangeDutyCycle(100)
@@ -92,11 +92,11 @@ while running:
     elif keys[pygame.K_a]:
     	if direction==0:
             wheel1_pwm.ChangeDutyCycle(0)
-            wheel2_pwm.ChangeDutyCycle(0)
+            wheel2_pwm.ChangeDutyCycle(100)
             wheel3_pwm.ChangeDutyCycle(100)
             wheel4_pwm.ChangeDutyCycle(0)
         elif direction==1:
-            wheel1_pwm.ChangeDutyCycle(0)
+            wheel1_pwm.ChangeDutyCycle(100)
             wheel2_pwm.ChangeDutyCycle(0)
             wheel3_pwm.ChangeDutyCycle(0)
             wheel4_pwm.ChangeDutyCycle(100)
@@ -105,11 +105,11 @@ while running:
             wheel1_pwm.ChangeDutyCycle(100)
             wheel2_pwm.ChangeDutyCycle(0)
             wheel3_pwm.ChangeDutyCycle(0)
-            wheel4_pwm.ChangeDutyCycle(0)
+            wheel4_pwm.ChangeDutyCycle(100)
         elif direction==1:
             wheel1_pwm.ChangeDutyCycle(0)
             wheel2_pwm.ChangeDutyCycle(100)
-            wheel3_pwm.ChangeDutyCycle(0)
+            wheel3_pwm.ChangeDutyCycle(100)
             wheel4_pwm.ChangeDutyCycle(0)
     elif keys[pygame.K_SPACE]:
     	wheel1_pwm.ChangeDutyCycle(0)
