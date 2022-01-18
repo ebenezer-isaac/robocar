@@ -1,3 +1,4 @@
+#sudo pigpiod
 import pygame, sys
 import pygame.locals
 import RPi.GPIO as GPIO
