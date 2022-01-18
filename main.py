@@ -5,6 +5,15 @@ from time import sleep
 import picamera
 import pygame
 import io
+from gpiozero import Servo
+from gpiozero.pins.pigpio import PiGPIOFactory
+
+panServoPin = 12 #BCM
+tiltServoPin = 25 #BCM
+factory = PiGPIOFactory()
+panServo = Servo(panServoPin,min_pulse_width=0.5/1000, max_pulse_width=2.5/1000, pin_factory=factory)
+tiltServo = Servo(tiltServoPin,min_pulse_width=0.5/1000, max_pulse_width=2.5/1000, pin_factory=factory)
+
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -28,9 +37,14 @@ print("initialized")
 screen = pygame.display.set_mode((320,240))
 
 camera = picamera.PiCamera()
-camera.rotation = 180
 camera.resolution = (320, 240)
 camera.crop = (0.0, 0.0, 1.0, 1.0)
+
+panPosition = 0
+tiltPosition = 0.5
+panServo.mid()
+tiltServo.value = tiltPosition
+sleep(0.1)
 
 x = (screen.get_width() - camera.resolution[0]) / 2
 y = (screen.get_height() - camera.resolution[1]) / 2
@@ -53,6 +67,41 @@ while running:
         if speed >1:
             speed = speed - 1
         print(speed)
+    if keys[pygame.K_KP5]:
+        panPosition = 0
+        tiltPosition = 0.5
+        tiltServo.value = tiltPosition
+        panServo.mid()
+        sleep(0.1)
+    if keys[pygame.K_KP4]:
+        if panPosition<1:
+            panPosition = panPosition+0.03
+        if panPosition>1:
+            panPosition = 1
+        panServo.value = panPosition
+        sleep(0.001)
+    if keys[pygame.K_KP6]:
+        if panPosition>-1:
+            panPosition = panPosition-0.03
+        if panPosition<-1:
+            panPosition = -1
+        panServo.value = panPosition
+        sleep(0.001)
+
+    if keys[pygame.K_KP2]:
+        if tiltPosition<1:
+            tiltPosition = tiltPosition+0.03
+        if tiltPosition>1:
+            tiltPosition = 1
+        tiltServo.value = tiltPosition
+        sleep(0.001)
+    if keys[pygame.K_KP8]:
+        if tiltPosition>-1:
+            tiltPosition = tiltPosition-0.03
+        if tiltPosition<-1:
+            tiltPosition = -1
+        tiltServo.value = tiltPosition
+        sleep(0.001)
     if keys[pygame.K_w] and keys[pygame.K_a]:
         direction = 0
         wheel1_pwm.ChangeDutyCycle(0)
@@ -133,5 +182,9 @@ while running:
     if img:
         screen.blit(img, (x,y))
     pygame.display.update()
+panServo.mid()
+tiltServo.value = 0.5
+sleep(0.1)
 camera.close()
 pygame.display.quit()
+GPIO.cleanup()
